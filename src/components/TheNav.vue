@@ -11,3 +11,10 @@
 <script>
 export default {}
 </script>
+
+<style scoped>
+a.router-link-active {
+  color: #fff;
+  border-bottom: 2px solid #fff;
+}
+</style>
