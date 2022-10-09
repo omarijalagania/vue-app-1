@@ -29,11 +29,16 @@
             type="email"
             name="email"
             id="email"
-            @blur="validateEmail"
             placeholder="Enter Email"
-            v-model="email"
+            v-model="v$.email.$model"
           />
-          <p v-if="this.validateMyEmail === 'error'">Required</p>
+          <div
+            class="h-2"
+            v-for="(error, index) of v$.email.$errors"
+            :key="index"
+          >
+            <div class="text-red-500">{{ error.$message }}</div>
+          </div>
         </div>
         <div class="flex flex-col w-full md:w-[70%]">
           <label
@@ -47,8 +52,15 @@
             name="password"
             id="password"
             placeholder="Enter Password"
-            v-model="password"
+            v-model="v$.password.$model"
           />
+          <div
+            class="h-2"
+            v-for="(error, index) of v$.password.$errors"
+            :key="index"
+          >
+            <div class="text-red-500">{{ error.$message }}</div>
+          </div>
         </div>
 
         <div class="flex items-center w-full md:w-[70%] space-x-3">
@@ -81,7 +93,7 @@
         </div>
 
         <div class="w-full md:w-[70%]">
-          <button-red> Login </button-red>
+          <button-red :disabled="this.v$.$invalid"> Login </button-red>
         </div>
       </div>
     </form>
@@ -90,32 +102,39 @@
 
 <script>
 import ButtonRed from "./ButtonRed.vue"
+import useVuelidate from "@vuelidate/core"
+import { required, email, minLength } from "@vuelidate/validators"
 
 export default {
   name: "login-form",
   components: { ButtonRed },
+  setup() {
+    return { v$: useVuelidate() }
+  },
   data() {
     return {
       email: "",
       password: "",
       rememberMe: false,
-      validateMyEmail: "pending",
       selected: "select",
     }
   },
+  validations() {
+    return {
+      email: {
+        required,
+        email,
+      },
+      password: {
+        required,
+        min: minLength(6),
+      },
+    }
+  },
+
   methods: {
     submit() {
       console.log(this.email, this.password, this.rememberMe, this.selected)
-    },
-
-    validateEmail() {
-      if (this.email === "") {
-        this.validateMyEmail = "error"
-      } else if (this.email.includes("@")) {
-        this.validateMyEmail = "success"
-      } else {
-        this.validateMyEmail = "pending"
-      }
     },
   },
 }
