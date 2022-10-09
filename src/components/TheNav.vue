@@ -3,8 +3,8 @@
     <div>
       <li class="flex space-x-4 text-2xl">
         <router-link to="/">Home</router-link>
-        <router-link to="/login">Login</router-link>
-        <router-link to="/register">Register</router-link>
+        <router-link to="/login">{{ $t("login") }}</router-link>
+        <router-link to="/register">{{ $t("register") }}</router-link>
       </li>
     </div>
     <div>

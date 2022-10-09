@@ -104,6 +104,7 @@
 import ButtonRed from "./ButtonRed.vue"
 import useVuelidate from "@vuelidate/core"
 import { required, email, minLength, helpers } from "@vuelidate/validators"
+import { store } from "../../state/str"
 
 export default {
   name: "login-form",
@@ -117,6 +118,7 @@ export default {
       password: "",
       rememberMe: false,
       selected: "select",
+      store,
     }
   },
   validations() {
@@ -135,7 +137,12 @@ export default {
 
   methods: {
     submit() {
-      console.log(this.email, this.password, this.rememberMe, this.selected)
+      const data = {
+        email: this.email,
+        password: this.password,
+      }
+      store.loginData = data
+      this.$router.push("/after-login")
     },
   },
 }
