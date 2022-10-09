@@ -103,7 +103,7 @@
 <script>
 import ButtonRed from "./ButtonRed.vue"
 import useVuelidate from "@vuelidate/core"
-import { required, email, minLength } from "@vuelidate/validators"
+import { required, email, minLength, helpers } from "@vuelidate/validators"
 
 export default {
   name: "login-form",
@@ -122,9 +122,10 @@ export default {
   validations() {
     return {
       email: {
-        required,
-        email,
+        required: helpers.withMessage("Email required", required),
+        email: helpers.withMessage("Email is not valid", email),
       },
+
       password: {
         required,
         min: minLength(6),
