@@ -12,7 +12,7 @@
         <h3
           class="text-5xl text-white font-semibold tracking-widest animate__animated animate__fadeInDown"
         >
-          Login
+          {{ $t("login") }}
         </h3>
       </div>
       <div
