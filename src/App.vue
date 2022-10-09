@@ -8,15 +8,9 @@ import TheNav from "./components/TheNav.vue"
 export default {
   name: "App",
   data() {
-    return {
-      isShowLoginForm: "login-form",
-    }
+    return {}
   },
-  methods: {
-    toggleForm(form) {
-      this.isShowLoginForm = form
-    },
-  },
+
   components: { TheNav },
 }
 </script>

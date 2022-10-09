@@ -5,10 +5,12 @@ import "animate.css"
 import "./styles/app.css"
 import LoginFormVue from "./components/LoginForm.vue"
 import RegisterFormVue from "./components/RegisterForm.vue"
+import MyHomeVue from "./components/MyHome.vue"
 
 const routes = [
   { path: "/login", component: LoginFormVue },
   { path: "/register", component: RegisterFormVue },
+  { path: "/", component: MyHomeVue },
 ]
 
 const router = createRouter({

@@ -1,6 +1,11 @@
 <template>
-  <div class="h-screen flex justify-center px-2 md:p-0 md:items-center">
-    <form class="w-full md:w-[70%] md:min-h-[60%] block md:flex">
+  <div
+    class="h-[calc(100vh_-_81px)] flex justify-center px-2 md:p-0 md:items-center"
+  >
+    <form
+      @submit.prevent="register"
+      class="w-full md:w-[70%] md:min-h-[60%] block md:flex"
+    >
       <div
         class="w-[30%] hidden md:flex z-20 justify-center items-center rounded-md bg-gradient-to-t from-red-400 to-red-600 shadow-md"
       >
